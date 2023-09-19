@@ -1,0 +1,14 @@
+#container{
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+   
+    align-items: center;
+
+}
+#signOut{
+    margin-top: 50px;
+    width: 220px;
+}

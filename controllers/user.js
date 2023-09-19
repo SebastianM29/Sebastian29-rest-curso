@@ -34,9 +34,7 @@ const usuariosGet = async(req = request , res = response)=> {
     // En vez de crear una constante ... se desestructura para asi poder ubicar como corresponde y quede mejor visualmentte en el get la cantidad
       const [cantidad , user ] = await Promise.all([
          Usuario.countDocuments(conexion),
-         Usuario.find(conexion)
-            .limit(Number(limite))
-            .skip(Number(desde))
+         Usuario.find(conexion).limit(Number(limite)).skip(Number(desde))
       ])
     res.json({
       cantidad,
@@ -105,11 +103,18 @@ const usuariosGet = async(req = request , res = response)=> {
   //const borrado =await Usuario.findByIdAndDelete(id);
   
   const deleteState =await Usuario.findByIdAndUpdate(id,{estado : false})
+  //el que cuenta con autentificacion por lo tanto tambien esta almacenada la informacion del req.usuario
+  const usuarioAutorizado = req.usuario;
+    
 
+  
     res.json({
        // borrado
+       
         deleteState,
-        msg : 'delete api --- controlador'
+        msg : 'delete api --- controlador',
+        user : usuarioAutorizado
+        
     })
   }
   
